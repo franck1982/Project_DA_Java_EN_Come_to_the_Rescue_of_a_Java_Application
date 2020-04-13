@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import com.hemebiotech.analytics.count.CountSymptoms;
 import com.hemebiotech.analytics.read.ReadSymptomDataFromFile;
 
 import java.io.BufferedReader;
@@ -19,13 +20,9 @@ public class AnalyticsCounter {
 
 
 		//3eme étape: On parcours le fichier en comptant les symptoms avec la map.
-		for  (String symptom : allSymptoms) {
-			if (symptomsCounter.containsKey(symptom)) {
-				symptomsCounter.put(symptom,symptomsCounter.get(symptom)+1);
-			} else {
-				symptomsCounter.put(symptom,1);
-			}
-		}
+        CountSymptoms counter = new CountSymptoms();
+        Map<String, Integer> symptomsCounter = counter.count(allSymptoms);
+
 		//4eme étape: On range dans l'ordre alphabétique les symtoms.
 		List<String> symptoms = new ArrayList<>(symptomsCounter.keySet());
 		Collections.sort(symptoms);
