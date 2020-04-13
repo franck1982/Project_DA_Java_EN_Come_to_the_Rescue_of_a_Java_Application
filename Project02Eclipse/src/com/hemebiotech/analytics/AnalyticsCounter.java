@@ -3,6 +3,7 @@ package com.hemebiotech.analytics;
 import com.hemebiotech.analytics.count.CountSymptoms;
 import com.hemebiotech.analytics.read.ReadSymptomDataFromFile;
 import com.hemebiotech.analytics.sort.SortSymptomsByName;
+import com.hemebiotech.analytics.write.WriteSymptomsDataToFile;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -29,10 +30,7 @@ public class AnalyticsCounter {
 		List<String> symptoms  = sorter.sort(symptomsCounter.keySet());
 
 		//5eme étape: On écrit le fichier result.out
-		FileWriter writer = new FileWriter ("result.out");
-		for (String symptom: symptoms){
-			writer.write(symptom+"="+symptomsCounter.get(symptom)+"\n");
-		}
-		writer.close();
+		WriteSymptomsDataToFile writer = new WriteSymptomsDataToFile("result.out");
+		writer.write(symptoms,symptomsCounter);
 	}
 }
