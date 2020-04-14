@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public class WriteSymptomsDataToFile {
+public class WriteSymptomsDataToFile implements IWriteSymptomsDataToFile {
 
     private String filepath;
 
@@ -15,6 +15,7 @@ public class WriteSymptomsDataToFile {
         this.filepath = filepath;
     }
 
+    @Override
     public void write(List<String> symptoms, Map<String, Integer> symptomsCounter) {
         try{
 
